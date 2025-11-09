@@ -21,6 +21,7 @@ const c_diff_add: dict<string> = {gui: '#2E8B57', cterm: '28'}
 const c_diff_change: dict<string> = {gui: '#1E90FF', cterm: '32'}
 const c_diff_delete: dict<string> = {gui: '#FF0000', cterm: '196'}
 const c_diff_text: dict<string> = {gui: '#E2BB1B', cterm: '214'}
+const c_special: dict<string> = {gui: '#D8D8C7', cterm: '188'}
 
 const a_bold = 'bold'
 const a_underline = 'underline'
@@ -124,7 +125,7 @@ H('PmenuThumb', c_fg, c_norm)
 H('Question', c_fg, c_bg, [a_bold])
 H('QuickFixLine', c_fg, c_bg, [a_bold])
 H('Search', c_fg, c_norm_l)
-H('SpecialKey', c_fg, c_none, [a_bold])
+H('SpecialKey', c_special, c_none, [a_bold])
 #H('SpellBad', c_yellow, c_bright_yellow)
 #H('SpellCap', c_blue, c_bright_blue)
 #H('SpellLocal', c_cyan, c_bright_cyan)
@@ -145,7 +146,7 @@ H('Constant', c_fg, c_bg)
 H('Identifier', c_fg, c_bg)
 H('Statement', c_fg_d, c_bg, [a_bold])
 H('PreProc', c_fg, c_bg)
-H('Type', c_fg, c_bg, [a_bold])
+H('Type', c_fg_d, c_bg, [a_bold])
 H('Special', c_fg, c_bg)
 H('Underlined', c_fg, c_bg, [a_underline])
 H('Ignore', c_fg, c_none)
