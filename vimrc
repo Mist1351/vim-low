@@ -10,6 +10,10 @@ g:mapleader = ' '
 
 syntax on
 
+set encoding=utf-8
+set fileencodings=ucs-bom,utf-8,latin1
+set termencoding=utf-8
+
 set shiftwidth=4
 set softtabstop=4
 set autoindent
