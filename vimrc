@@ -128,6 +128,9 @@ nnoremap <silent> <C-h> <C-w>h
 nnoremap <silent> <C-j> <C-w>j
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-l> <C-w>l
+# Tags
+nnoremap <silent> <leader>] :silent! tn<CR>
+nnoremap <silent> <leader>[ :silent! tp<CR>
 
 nnoremap <silent> <S-k> <Nop>
 
