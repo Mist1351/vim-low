@@ -11,6 +11,13 @@ augroup DetectFiles
     autocmd BufNewFile,BufRead *.gd setlocal filetype=gdscript
 augroup END
 
+augroup EditorConfig
+    autocmd!
+    autocmd BufNewFile,BufRead * utils#ApplyEditorConfig()
+augroup END
+
+command! EditorConfigReload utils#ApplyEditorConfig()
+
 g:mapleader = ' '
 
 syntax on
