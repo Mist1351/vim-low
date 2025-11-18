@@ -96,6 +96,7 @@ g:netrw_banner = 0
 g:netrw_liststyle = 1
 
 command! ProjectExplore execute 'Explore' utils#FindProjectRoot()
+command! ColorizeHex call <SID>utils#ColorizeHex()
 
 # Leader
 nnoremap <silent> <leader> <Nop>
@@ -174,53 +175,3 @@ augroup END
 set completeopt=longest,menuone
 set completepopup=height:10,width:10,highlight:InfoPopup
 set wildmenu
-
-# Color
-def ContrastColor(bg: string): string
-    var r = str2nr(bg[1] .. bg[2], 16)
-    var g = str2nr(bg[3] .. bg[4], 16)
-    var b = str2nr(bg[5] .. bg[6], 16)
-    var luminance = 0.299 * r + 0.587 * g + 0.114 * b
-    return luminance > 186 ? '#000000' : '#FFFFFF'
-enddef
-
-def CollectColors(): dict<bool>
-    var lines = getline(1, '$')
-    var matches = {}
-    for line in lines
-        var start = 0
-        while true
-            var [m, s, e] = matchstrpos(line, '#\x\{6}', start)
-            if empty(m)
-                break
-            endif
-            matches[m] = true
-            start = e
-        endwhile
-    endfor
-    return matches
-enddef
-
-def ColorizeHex(): void
-    silent! syntax clear ColorHexDynamic
-    var matches = CollectColors()
-    for color in keys(matches)
-        var group = 'ColorHex_' .. substitute(color, '#', '', '')
-        execute 'highlight ' .. group .. ' guibg=' .. color .. ' guifg=' .. ContrastColor(color)
-        execute 'syntax match ' .. group .. ' "' .. color .. '" containedIn=ALL'
-    endfor
-enddef
-if !exists('g:loaded_colorize')
-    g:loaded_colorize = 1
-    command! ColorizeHex call <SID>ColorizeHex()
-endif
-
-if !exists('g:loaded_clip')
-    g:loaded_clip = 1
-    if executable('clip.exe')
-        augroup WSLYank
-            autocmd!
-            autocmd TextYankPost * if v:event.operator ==# 'y' && v:event.regname ==# '"' | call system('clip.exe', @0) | endif
-        augroup END
-    endif
-endif
