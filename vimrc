@@ -91,6 +91,12 @@ autocmd BufReadPost *
 	\   exe "normal! g`\"" |
 	\ endif
 
+# Netrw
+g:netrw_banner = 0
+g:netrw_liststyle = 1
+
+command! ProjectExplore execute 'Explore' utils#FindProjectRoot()
+
 # Leader
 nnoremap <silent> <leader> <Nop>
 # Clear
@@ -117,7 +123,7 @@ nnoremap <silent> <leader>td :tabc<CR>
 nnoremap <silent> <leader>tn :tabn<CR>
 nnoremap <silent> <leader>tp :tabp<CR>
 # File
-nnoremap <silent> <leader>e :Explore<CR>
+nnoremap <silent> <leader>e :ProjectExplore<CR>
 nnoremap <silent> <leader>f <Nop>
 nnoremap <silent> <leader>fe :Explore<CR>
 # Search
