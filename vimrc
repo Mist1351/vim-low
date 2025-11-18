@@ -6,6 +6,11 @@ set nopaste
 set nocompatible
 filetype plugin on
 
+augroup DetectFiles
+    autocmd!
+    autocmd BufNewFile,BufRead *.gd setlocal filetype=gdscript
+augroup END
+
 g:mapleader = ' '
 
 syntax on
@@ -35,6 +40,11 @@ set nolist
 
 set laststatus=2
 set statusline=%{toupper(mode())}\ %f%=%y\ [%{&ff}]\ [%{&fenc}]\ %l/%L\ %c\ [%{strftime("%H:%M")}]
+
+augroup LocalSettings
+    autocmd!
+    autocmd FileType gdscript setlocal noexpandtab tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
 
 #colorscheme morning
 #colorscheme powershell
@@ -171,6 +181,8 @@ augroup AutoComplete
     autocmd FileType c,cpp setlocal complete=.,w,b,u,t,i
     autocmd FileType vim setlocal omnifunc=syntaxcomplete#Complete
     autocmd FileType vim setlocal complete=.,w,b,u,t,i
+    autocmd FileType gdscript setlocal omnifunc=utils#GDScriptOmni
+    autocmd FileType gdscript setlocal complete=.,w,b,u,t,i
 augroup END
 set completeopt=longest,menuone
 set completepopup=height:10,width:10,highlight:InfoPopup
