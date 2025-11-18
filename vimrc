@@ -42,11 +42,23 @@ colorscheme acme
 set background=light
 set termguicolors
 
+# Clipboard
 if "" == &clipboard
     set clipboard=unnamed
 endif
 set clipboard+=unnamedplus
 
+if !exists('g:loaded_clip')
+    g:loaded_clip = 1
+    if executable('clip.exe')
+        augroup WSLYank
+            autocmd!
+            autocmd TextYankPost * if v:event.operator ==# 'y' && v:event.regname ==# '"' | call system('clip.exe', @0) | endif
+        augroup END
+    endif
+endif
+
+# Dirs
 const swap_tmp_dir: string = expand(HOME_DIR .. "/tmp/")
 if "" == finddir(swap_tmp_dir)
 	mkdir(swap_tmp_dir, 'p', 0o700)
