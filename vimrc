@@ -44,6 +44,7 @@ set conceallevel=2
 set concealcursor=nvc
 set listchars=eol:$,tab:>.,space:.
 set nolist
+set nowrap
 
 set laststatus=2
 set statusline=%{toupper(mode())}\ %f%=%y\ [%{&ff}]\ [%{&fenc}]\ %l/%L\ %c\ [%{strftime("%H:%M")}]
